@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Formulario</title>
+        <style>
+            .centered {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            body {
+                background-color: #FFFFFF; /* Fondo de la página */
+                font-family: 'Arial', sans-serif; /* Tipo de letra general */
+                color: #1e3a56; /* Color de texto general */
+            }
+
+            h:form {
+                background-color: #dbe5eb; /* Fondo del formulario */
+                border: 2px solid #2c5985; /* Borde del formulario */
+                padding: 20px; /* Espaciado interno del formulario */
+                border-radius: 10px; /* Bordes redondeados del formulario */
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra del formulario */
+            }
+
+            h:inputText {
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border: 2px solid #2c5985; /* Borde de los campos de entrada */
+                border-radius: 5px;
+                box-sizing: border-box;
+                color: #2c5985; /* Color del texto de los campos de entrada */
+            }
+
+            h:outputLabel {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 18px;
+                color: #000000; /* Color del texto de las etiquetas */
+            }
+            h:outputLabel.nombre-apellido {
+                font-size: 40px; /* Tamaño más grande para nombre y apellido */
+                font-weight: bold; /* Texto más grueso */
+            }
+
+            h:commandButton {
+                background-color: #337ab7; /* Azul más oscuro para el fondo del botón */
+                color: #ffffff; /* Color del texto del botón */
+                padding: 12px 20px;
+                margin-top: 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold; /* Texto más grueso */
+                transition: background-color 0.3s;
+            }
+
+            h:commandButton:hover {
+                background-color: #286090; /* Azul más claro al pasar el mouse */
+            }
+            .custom-button {
+                background-color: #000066; /* Azul más oscuro para el fondo del botón */
+                color: #ffffff; /* Color del texto del botón */
+                padding: 15px 25px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold; /* Texto más grueso */
+                transition: background-color 0.3s;
+            }
+
+            .custom-button:hover {
+                background-color: #286090; /* Azul más claro al pasar el mouse */
+            }
+            .otras-etiquetas {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #000000;
+            }
+
+            /* Estilos para el inputText */
+            .custom-input {
+                width: 100%;
+                padding: 5px;
+                margin: 8px 0;
+                border: 2px solid #2c5985;
+                border-radius: 15px; /* Esquinas más redondeadas */
+                box-sizing: border-box;
+                font-size: 18px; /* Tamaño de fuente personalizado */
+                color: #2c5985;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form styleClass="centered">
+            <div style="text-align: center;">
+                <img src="#{request.contextPath}/imagenes/logo.jpg" alt="Logo" style="width: 150px; height: auto;" />
+            </div>
+
+
+
+            <h:panelGrid columns="2">
+                
+                
+                
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> NOMBRE: </h:outputLabel> 
+                <h:inputText value="#{calculos.nombre}" required="true" styleClass="custom-input"/>
+
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> APELLIDO PATERNO: </h:outputLabel> 
+                <h:inputText value="#{calculos.apellidoPaterno}" required="true" styleClass="custom-input"/>
+
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> APELLIDO MATERNO: </h:outputLabel> 
+                <h:inputText value="#{calculos.apellidoMaterno}" required="true" styleClass="custom-input"/>
+
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> FECHA DE NACIMIENTO "yyyy-MM-dd": </h:outputLabel> 
+                <h:inputText value="#{calculos.fechaNacimiento}" required="true" styleClass="custom-input">
+                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                    <f:validateBean />
+                </h:inputText>
+
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> GRADO (1 al 6): </h:outputLabel> 
+                <h:inputText value="#{calculos.grado}" required="true" styleClass="custom-input">
+                    <f:validateLongRange minimum="1" maximum="6"/>
+                </h:inputText>
+
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> GRUPO(A,B,C,D,F): </h:outputLabel> 
+                <h:inputText value="#{calculos.grupo}" required="true" maxlength="1" styleClass="custom-input">
+                    <f:validateRegex pattern="[A-Fa-f]" />
+                </h:inputText>
+
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> CORREO ELECTRÓNICO: </h:outputLabel> 
+                <h:inputText value="#{calculos.correoElectronico}" required="true" styleClass="custom-input">
+                    <f:validateRegex pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" />
+                </h:inputText>
+                
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> PROMEDIO (1): </h:outputLabel> 
+                <h:inputText value ="#{calculos.calificacionActividad1}" required="true" styleClass="custom-input">
+                    <f:validateDoubleRange  maximum="10" minimum="1"/>
+                </h:inputText>
+
+                <h:outputLabel for="nombre" styleClass="otras-etiquetas"> PROMEDIO (2): </h:outputLabel> 
+                <h:inputText value ="#{calculos.calificacionActividad2}" required="true" styleClass="custom-input">
+                    <f:validateDoubleRange  maximum="10" minimum="1"/>
+                </h:inputText>
+
+                <h:outputLabel for="problemas" class="otras-etiquetas"> PROBLEMAS: </h:outputLabel>
+                <h:inputTextarea  value="#{calculos.problemas}" rows="3" cols="50">
+                    <f:validateLength maximum="500" />
+                    
+                </h:inputTextarea>
+
+                
+
+                
+
+
+            </h:panelGrid>
+            <div style="text-align: center;">
+                <h:commandButton styleClass="custom-button" value="Aceptar" action="resultados.xhtml"/>
+            </div>
+            
+        </h:form>
+        
+        <footer>
+            <p>Síguenos en redes sociales:</p>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </footer>
+    </h:body>
+</html>
+

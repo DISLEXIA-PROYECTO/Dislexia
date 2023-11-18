@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Página Principal</title>
+        <style>
+            body {
+                background-color: #f0f7f9;
+                font-family: 'Arial', sans-serif;
+                color: #1e3a56;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                background-color: #2c5985;
+                color: #ffffff;
+                text-align: center;
+                padding: 1em;
+            }
+
+            nav {
+                background-color: #3498db;
+                padding: 1em;
+            }
+
+            nav a {
+                color: #ffffff;
+                text-decoration: none;
+                margin: 0 1em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            footer {
+                background-color: #2c5985;
+                color: #ffffff;
+                text-align: center;
+                padding: 1em;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+
+            footer a {
+                color: #ffffff;
+                text-decoration: none;
+                margin: 0 1em;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <header>
+            <h1>Dislexia</h1>
+            <img src="#{request.contextPath}/imagenes/logo.jpg" alt="Logo" style="width: 100px; height: auto;" />
+        </header>
+        
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Acerca de la Dislexia</a>
+            <a href="#">Contacto</a>
+        </nav>
+
+        <div class="content">
+            <h:panelGrid columns="2">
+                <!-- Contenido del formulario -->
+            </h:panelGrid>
+
+            <div>
+                <h2>¿Qué es la Dislexia?</h2>
+                <p>La dislexia es un trastorno del aprendizaje que afecta la lectura, la escritura y la ortografía. No es causada por falta de inteligencia o visión, sino que tiene una base neurobiológica. Los niños con dislexia pueden tener dificultades para reconocer palabras, deletrear y comprender el significado de lo que leen.</p>
+            </div>
+
+            <div>
+                <h2>Importancia de la Atención a la Dislexia en Niños</h2>
+                <p>La identificación temprana y el apoyo adecuado son fundamentales para ayudar a los niños con dislexia a superar los desafíos de aprendizaje. Con intervenciones adecuadas, estos niños pueden desarrollar habilidades de lectura y escritura, lo que les permitirá tener éxito en la escuela y en la vida cotidiana.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Síguenos en redes sociales:</p>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </footer>
+    </h:body>
+</html>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Tarjetas</title>
+        
+        <style>
+            .centered {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            body {
+                background-color: #FFFFFF; /* Fondo de la página */
+                font-family: 'Arial', sans-serif; /* Tipo de letra general */
+                color: #1e3a56; /* Color de texto general */
+            }
+
+            h:form {
+                background-color: #dbe5eb; /* Fondo del formulario */
+                border: 2px solid #2c5985; /* Borde del formulario */
+                padding: 20px; /* Espaciado interno del formulario */
+                border-radius: 10px; /* Bordes redondeados del formulario */
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra del formulario */
+            }
+
+            h:inputText {
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border: 2px solid #2c5985; /* Borde de los campos de entrada */
+                border-radius: 5px;
+                box-sizing: border-box;
+                color: #2c5985; /* Color del texto de los campos de entrada */
+            }
+
+            h:outputLabel {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 18px;
+                color: #000000; /* Color del texto de las etiquetas */
+            }
+            h:outputLabel.nombre-apellido {
+                font-size: 40px; /* Tamaño más grande para nombre y apellido */
+                font-weight: bold; /* Texto más grueso */
+            }
+
+            h:commandButton {
+                background-color: #337ab7; /* Azul más oscuro para el fondo del botón */
+                color: #ffffff; /* Color del texto del botón */
+                padding: 12px 20px;
+                margin-top: 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold; /* Texto más grueso */
+                transition: background-color 0.3s;
+            }
+
+            h:commandButton:hover {
+                background-color: #286090; /* Azul más claro al pasar el mouse */
+            }
+            .custom-button {
+                background-color: #000066; /* Azul más oscuro para el fondo del botón */
+                color: #ffffff; /* Color del texto del botón */
+                padding: 15px 25px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: bold; /* Texto más grueso */
+                transition: background-color 0.3s;
+            }
+
+            .custom-button:hover {
+                background-color: #286090; /* Azul más claro al pasar el mouse */
+            }
+            .otras-etiquetas {
+                display: block;
+                margin-bottom: 10px;
+                font-size: 15px;
+                font-weight: bold;
+                color: #000000;
+            }
+
+            /* Estilos para el inputText */
+            .custom-input {
+                width: 100%;
+                padding: 5px;
+                margin: 8px 0;
+                border: 2px solid #2c5985;
+                border-radius: 15px; /* Esquinas más redondeadas */
+                box-sizing: border-box;
+                font-size: 18px; /* Tamaño de fuente personalizado */
+                color: #2c5985;
+            }
+            /* Estilos para las tarjetas */
+            .card {
+                border: 1px solid #ddd;
+                padding: 5px;
+                margin: 5px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                background-color: #3498db; /* Color de fondo para la tarjeta */
+                color: #ffffff; /* Color del texto en la tarjeta */
+            }
+
+            .card-title {
+                font-size: 15px;
+                font-weight: bold;
+                color: #fff; /* Color del texto del título en la tarjeta */
+            }
+            footer {
+                background-color: #2c5985;
+                color: #ffffff;
+                text-align: center;
+                padding: 1em;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+
+            footer a {
+                color: #ffffff;
+                text-decoration: none;
+                margin: 0 1em;
+            }
+
+        </style>
+    </h:head>
+    <h:body style="overflow: auto; margin: 0; padding: 0;">
+        <h:form styleClass="centered" >
+            <h:panelGrid columns="2">
+                <h:outputLabel styleClass="otras-etiquetas"> NOMBRE: </h:outputLabel> 
+                <h:outputText value ="#{calculos.nombre}" />
+
+                <h:outputLabel styleClass="otras-etiquetas"> APELLIDO PATERNO: </h:outputLabel> 
+                <h:outputText value ="#{calculos.apellidoPaterno}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> APELLIDO MATERNO: </h:outputLabel> 
+                <h:outputText value ="#{calculos.apellidoMaterno}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> FECHA NACIMIENTO: </h:outputLabel> 
+                <h:outputText value ="#{calculos.fechaNacimiento}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> GRADO: </h:outputLabel> 
+                <h:outputText value ="#{calculos.grado}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> GRUPO: </h:outputLabel> 
+                <h:outputText value ="#{calculos.grupo}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> CORREO ELECTRÓNICO: </h:outputLabel> 
+                <h:outputText value ="#{calculos.correoElectronico}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> Actividad 1 (V): </h:outputLabel> 
+                <h:outputText value ="#{calculos.calificacionActividad1}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> Actividad 2: </h:outputLabel> 
+                <h:outputText value ="#{calculos.calificacionActividad2}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> Promedio : </h:outputLabel> 
+                <h:outputText value ="#{calculos.promedio()}"/>
+
+                <h:outputLabel styleClass="otras-etiquetas"> PROBLEMAS: </h:outputLabel> 
+                <h:outputText value="#{calculos.problemas}" escape="false"/>
+
+
+            </h:panelGrid>
+            
+            <h:panelGrid columns="3">
+                
+                <a href="informacion.xhtml">
+                    <!-- Tarjeta 1 -->
+                    <div class="card">
+                        <img src="#{request.contextPath}/imagenes/logo.jpg" alt="Logo" style="width: 50px; height: auto;" />
+                        <div class="card-title">¿Que es la Dislexia? </div>
+                        Contenido de la tarjeta 1
+                        <div>Fecha de publicación: 01/01/2023</div>
+                        <div>Autor: Damian Buatista</div>
+                    </div>
+                </a>
+                
+                <!-- Tarjeta 2 -->
+                <div class="card">
+                    <img src="#{request.contextPath}/imagenes/descarga.jpg" alt="Logo" style="width: 50px; height: auto;" />
+                    
+                    <div class="card-title">Actividades</div>
+                    Contenido de la tarjeta 2.
+                    <div>Fecha de publicación: 01/02/2023</div>
+                    <div>Autor: Damian Buatista</div>
+                </div>
+                
+            </h:panelGrid>
+
+
+
+            <div style="text-align: center;">
+                <h:commandButton styleClass="custom-button" value="Calcular otro promedio" action="index.xhtml"/>
+            </div>
+        </h:form>
+
+    </h:body>
+</html>
+
