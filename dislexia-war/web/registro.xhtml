@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            #contenedor {
+                display: flex;
+                max-width: 1000px;
+                margin: auto;
+            }
+
+            #formulario {
+                flex: 1;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            #imagen {
+                flex: 1;
+                padding: 20px;
+                text-align: center;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            input, select {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                box-sizing: border-box;
+                
+            }
+            input[type="submit"] {
+            background-color: #1e3a56; 
+            color: white; 
+            cursor: pointer; 
+            }
+        </style>
+        <title>ALUMNOS</title>
+    </head>
+    <body>
+
+        <div id="contenedor">
+            <div id="imagen">
+                <img src="#{request.contextPath}/imagenes/logo.jpg" alt="logo"  style="max-width: 100%;"/>
+            </div><!-- imagen -->
+            <div id="formulario">
+                <h2>DATOS DEL ESTUDIANTE</h2>
+                <form action="/procesar_registro" method="post">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" placeholder= "NOMBRE" name="nombre"/>
+
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" placeholder= "APELLIDOS" name="apellidos"/>
+
+                    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento"/>
+
+                    <label for="grupo">Grupo:</label>
+                    <input type="text" id="grupo" placeholder= "GRUPO" name="grupo"/>
+
+                    <label for="problemas">Problemas:</label>
+                    <input id="problemas" name="problemas" placeholder= "PROBLEMAS"/>
+
+                    <input type="submit" value="SIGUIENTE"/>
+                </form>
+            </div>
+
+
+        </div>
+
+    </body>
+</html>
