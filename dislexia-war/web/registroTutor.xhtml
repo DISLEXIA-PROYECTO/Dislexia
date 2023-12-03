@@ -6,24 +6,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
             body {
                 font-family: Arial, sans-serif;
-                display: flex;
+                display: grid;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
                 margin: 0;
+                padding:0;
             }
 
             #contenedor {
-                display: flex;
-                max-width: 1000px;
-                margin: auto;
+                display: flex;          
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                box-sizing: border-box;
+                width: auto;
+                height: auto;
             }
 
             #formulario {
@@ -50,44 +59,51 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 padding: 8px;
                 margin-bottom: 15px;
                 box-sizing: border-box;
-                
+
             }
             input[type="submit"] {
-            background-color: #1e3a56; 
-            color: white; 
-            cursor: pointer; 
+                background-color: #FFFFFF;
+                color: black;
+                cursor: pointer;
             }
         </style>
         <title>ALUMNOS</title>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
+                <div class ="card">
+                <h:form>
+                    <p:messages id="messages" showDetail="false" closable="true">
+                        <p:autoUpdate/>
+                    </p:messages>
 
+                </h:form>
+            </div>
         <div id="contenedor">
             <div id="imagen">
                 <img src="#{request.contextPath}/imagenes/logo.jpg" alt="logo"  style="max-width: 100%;"/>
             </div><!-- imagen -->
             <div id="formulario">
-                <h2>TE DAMOS LA BIENVENIDA A DISLEXWEB</h2>
-                <form action="/procesar_registro" method="post">
-                    <label for="nombre">Nombre completo tutor</label>
-                    <input type="text" id="nombre" placeholder= "NOMBRE" name="nombre"/>
-                    
-                    <label for="correo">correo tutor</label>
-                    <input type="text" id="nombre" placeholder= "CORREO" name="correo"/>
+                <h2>DATOS DEL TUTOR DE ${cUsuarios.usuario.usuario}</h2>
+                <h:form>
 
-                    <label for="contraseña">Contraseña</label>
-                    <input type="password" id="contraseña" placeholder= "CONTRASEÑA" name="contraseña"/>
+                    <h:outputLabel for="nombre">Nombre</h:outputLabel >
+                    <h:inputText id="nombreIpt" value ="#{cTutor.tutor.nombre}" required ="true" requiredMessage = "Nombre no requisitado" title="nombre tutor"/>
 
-                    <label for="confirmaContraseña">Confirmar contraseña</label>
-                    <input type="password" id="contraseña" placeholder= "CONFIRMAR CONTRASEÑA" name="confirmarContraseña"/>
+                    <h:outputLabel for ="apellidopt">Apellido Paterno</h:outputLabel>
+                    <h:inputText id ="apellidoIpt" value ="#{cTutor.tutor.apellidop}" required ="true" requiredMessage = "Apellido paterno no requisitado" title ="apellido paterno tutor"/>
 
-                    
-                    <input type="submit" value="SIGUIENTE"/>
-                </form>
+                    <h:outputLabel for ="apellidomt" >Apellido Materno</h:outputLabel>
+                    <h:inputText id ="apellidoImt" value ="#{cTutor.tutor.apellidom}" required ="true" requiredMessage = "Apellido materno no requisitado" title ="apellido materno tutor"/>
+
+                    <h:outputLabel  for="correo">Correo</h:outputLabel >
+                    <h:inputText  id="nombre" value ="#{cTutor.tutor.correo}" required ="true" requiredMessage = "Correo no requisitado" title="correo tutor"/>
+
+                    <h:commandButton value="SIGUIENTE" action ="#{cTutor.registrarTutor}" actionListener ="#{cTutor.tutor.setIdtutorado(cUsuarios.usuario)}"/>
+                </h:form>
             </div>
 
 
         </div>
 
-    </body>
+    </h:body>
 </html>
