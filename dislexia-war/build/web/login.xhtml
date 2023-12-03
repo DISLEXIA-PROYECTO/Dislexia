@@ -6,8 +6,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-      
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
     <h:head>
         <title>DislexApp-Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,12 +21,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 padding: 0;
                 font-family: sans-serif;
                 color: #FFFFFF;
-                
-                
+
+
             }
-            
+
             body::before{
-               
+
                 content: "";
                 background: url(https://static.nationalgeographicla.com/files/styles/image_3200/public/virtual-learning-og.jpg?w=1600);
                 background-size: cover;
@@ -34,60 +38,60 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 width: 100%;
                 height: 100%;
                 z-index: -1;
-                }
-            
+            }
+
             .login-box {
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                transform:translate(-50%, -50%); 
+                transform:translate(-50%, -50%);
                 width: 320px;
                 height: 410px;
-                background: #4e2ceb;
+                background: #003399;
                 padding: 60px 30px;
                 box-sizing: border-box;
-                
-            } 
-            
+
+            }
+
             .login-box .avatar{
                 width: 100px;
-                height: 100px; 
+                height: 100px;
                 border-radius: 50px;
                 position: absolute;
                 top: -50px;
                 left: calc(50% - 50px);
             }
-            
+
             .login-box h1{
                 margin: 0;
                 padding: 0 0 20px;
                 text-align: center;
                 font-size: 22px;
             }
-            
+
             .login-box label{
                 margin: 0;
                 padding: 0;
                 font-weight: bold;
                 display: block;
             }
-            
+
             .login-box input{
                 width: 100%;
                 margin-bottom: 20px;
             }
-            
+
             .login-box input[type="text"],
             .login-box input[type="password"]{
                 border: none;
-                border-bottom: 1px solid #FFFFFF; 
-                background-color: transparent; 
+                border-bottom: 1px solid #FFFFFF;
+                background-color: transparent;
                 outline: none;
-                height: 40px; 
+                height: 40px;
                 color:#FFFFFF;
                 font-size: 16px;
             }
-            
+
             .login-box input[type = "submit"]{
                 border: none;
                 outline: none;
@@ -97,41 +101,58 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 font-size: 15px;
                 font-weight: bold;
                 border-radius: 10px;
-                
+
             }
-            
+
             .login-box a{
                 font-size: 12px;
                 line-height: 20px;
                 color: darkgray;
             }
-            
+
             .login-box a.hover{
                 color:#FFFFFF;
             }
-            
-            
+
+
         </style>
     </h:head>
     <h:body>
+
+
         <div class="login-box">
             <img src="#{request.contextPath}/imagenes/logo.jpg" class = "avatar" alt="logo-login"/>
             <h1>Iniciar Sesión</h1>
             <h:form>
-            
+
                 <h:outputLabel for ="usuario" >Usuario</h:outputLabel>
-                <h:inputText value="#{Usuarios.usuario}" required ="true"></h:inputText>
-                
+                <h:inputText id="usuario" 
+                             validator ="#{cUsuarios.validarU()}"
+                             value="#{cUsuarios.usuario.usuario}"></h:inputText>
+
                 <h:outputLabel for ="contrasenia" >Contraseña</h:outputLabel>
-                <h:inputSecret value="#{Usuarios.contrasena}" required ="true" ></h:inputSecret>
-                
-                <h:commandButton value="Ingresar" /> 
-                
-                <a href="#">Recuperar contraseña</a> 
-                <br></br>
-                <a href ="#">Registrarse</a>
-        </h:form>
+                <h:inputSecret id="contrasenia" 
+                             validator ="#{cUsuarios.validarP}"
+                             value="#{cUsuarios.usuario.contrasenia}" ></h:inputSecret>
+
+                <h:commandButton value="Ingresar" action = "#{cUsuarios.log}"  /> 
+
+            </h:form>
             
+            <h:form>
+                <h:commandLink value="Recuperar Contraseña"/> 
+                <br></br>
+                <h:commandLink value="Registrarse" action ="registro"/> 
+            </h:form>
+
+        </div>
+        <div class ="card">
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
+
+            </h:form>
         </div>
     </h:body>
 </html>
