@@ -9,6 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
@@ -18,7 +19,6 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import log_neg.LnUsuario;
 import modelo.Usuario;
-import static org.primefaces.component.api.UICalendar.PropertyKeys.pattern;
 
 /**
  *
@@ -36,13 +36,13 @@ public class cUsuarios implements Serializable {
     private Date fechaSeleccionada;
     private Date fechaMinima;
     private Date fechaMaxima;
-    
+
     public cUsuarios() {
         usuario = new Usuario();
         cal = Calendar.getInstance();
         fechaMaxima = cal.getTime();
     }
-    
+
     public Date getFechaSeleccionada() {
         return fechaSeleccionada;
     }
@@ -80,13 +80,19 @@ public class cUsuarios implements Serializable {
         return "registroTutor";
     }
 
-    public String log(FacesContext context, UIComponent toValidate, Object value) {
+    public List<Usuario> getUsuarios() {
+        return lnUsuario.usuarios();
+    }
+
+    public String log() {
         String us = usuario.getUsuario();
         String pass = usuario.getContrasenia();
-        if (lnUsuario.usuarioLog(us, pass) != null) {
-            return "informacion";
+        FacesMessage mensaje;
+        if (lnUsuario.usuarioLog(us, pass) != null) {          
+            return "actividades";
         }
-        return "/";
+            return "login"; 
+        
     }
 
     public void validarU(FacesContext context, UIComponent toValidate, Object value) {
@@ -96,6 +102,7 @@ public class cUsuarios implements Serializable {
             mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "info", "Ingrese un usuario valido");
             context.addMessage(toValidate.getClientId(context), mensaje);
             ((UIInput) toValidate).setValid(false);
+            return;
         }
     }
 
@@ -110,21 +117,21 @@ public class cUsuarios implements Serializable {
     }
 
     public void validarG(FacesContext context, UIComponent toValidate, Object value) {
-       String dato = (String)value;
-       String regex = "^[a-zA-Z]+$";
-       Pattern patron = Pattern.compile(regex);
-       Matcher matcher = patron.matcher(dato);
-       
-       FacesMessage mensaje;
-      
-       if(!matcher.find()){
-           mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO,"Algunos campos contienen números", "El campo solo requiere de texto sin números o caracteres especiales");
-           context.addMessage(toValidate.getClientId(context), mensaje);
-           ((UIInput)toValidate).setValid(false);
-           return;
-       }
+        String dato = (String) value;
+        String regex = "^[a-zA-Z]+$";
+        Pattern patron = Pattern.compile(regex);
+        Matcher matcher = patron.matcher(dato);
+
+        FacesMessage mensaje;
+
+        if (!matcher.find()) {
+            mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "Algunos campos contienen números", "El campo solo requiere de texto sin números o caracteres especiales");
+            context.addMessage(toValidate.getClientId(context), mensaje);
+            ((UIInput) toValidate).setValid(false);
+            return;
+        }
     }
-    
+
 
     /*
     public int buscarU(Usuario u){
