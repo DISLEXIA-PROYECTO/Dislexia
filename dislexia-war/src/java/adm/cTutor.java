@@ -7,6 +7,7 @@ package adm;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
@@ -34,7 +35,7 @@ public class cTutor implements Serializable {
     private LnTutor lnTutor;
 
     private Tutor tutor; 
-    
+    private List<Tutor> tutores;
     
     public cTutor() {
         tutor = new Tutor();
@@ -57,6 +58,11 @@ public class cTutor implements Serializable {
         if(user != null){
             tutor.setIdtutorado(user);
         }
+    }
+    
+    public List<Tutor> getTutores() {
+        
+        return (tutores = lnTutor.tutores());
     }
     
     public void validaC(FacesContext context, UIComponent toValidate, Object value){

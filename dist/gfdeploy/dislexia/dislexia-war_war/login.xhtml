@@ -118,40 +118,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         </style>
     </h:head>
     <h:body>
-
-
         <div class="login-box">
             <img src="#{request.contextPath}/imagenes/logo.jpg" class = "avatar" alt="logo-login"/>
             <h1>Iniciar Sesión</h1>
             <h:form>
 
-                <h:outputLabel for ="usuario" >Usuario</h:outputLabel>
+                <h:outputLabel for ="usuario">Usuario</h:outputLabel>
                 <h:inputText id="usuario" 
-                             validator ="#{cUsuarios.validarU()}"
+                             validator ="#{cUsuarios.validarU}"
                              value="#{cUsuarios.usuario.usuario}"></h:inputText>
 
                 <h:outputLabel for ="contrasenia" >Contraseña</h:outputLabel>
                 <h:inputSecret id="contrasenia" 
-                             validator ="#{cUsuarios.validarP}"
-                             value="#{cUsuarios.usuario.contrasenia}" ></h:inputSecret>
+                               validator ="#{cUsuarios.validarP}"
+                               value="#{cUsuarios.usuario.contrasenia}"
+                               required="true"></h:inputSecret>
 
-                <h:commandButton value="Ingresar" action = "#{cUsuarios.log}"  /> 
-
+                <h:commandButton value="Ingresar" action="#{cUsuarios.log()}"/> 
             </h:form>
-            
             <h:form>
                 <h:commandLink value="Recuperar Contraseña"/> 
                 <br></br>
                 <h:commandLink value="Registrarse" action ="registro"/> 
             </h:form>
-
         </div>
         <div class ="card">
             <h:form>
-                <p:messages id="messages" showDetail="true" closable="true">
+                <p:messages id="messages" showDetail="true" closable="true" globalOnly="true">
                     <p:autoUpdate/>
                 </p:messages>
-
             </h:form>
         </div>
     </h:body>
