@@ -7,6 +7,10 @@ package adm;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -14,6 +18,7 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import log_neg.LnUsuario;
 import modelo.Usuario;
+import static org.primefaces.component.api.UICalendar.PropertyKeys.pattern;
 
 /**
  *
@@ -27,9 +32,39 @@ public class cUsuarios implements Serializable {
     private LnUsuario lnUsuario;
 
     private Usuario usuario;
-
+    private Calendar cal;
+    private Date fechaSeleccionada;
+    private Date fechaMinima;
+    private Date fechaMaxima;
+    
     public cUsuarios() {
         usuario = new Usuario();
+        cal = Calendar.getInstance();
+        fechaMaxima = cal.getTime();
+    }
+    
+    public Date getFechaSeleccionada() {
+        return fechaSeleccionada;
+    }
+
+    public void setFechaSeleccionada(Date fechaSeleccionada) {
+        this.fechaSeleccionada = fechaSeleccionada;
+    }
+
+    public Date getFechaMinima() {
+        return fechaMinima;
+    }
+
+    public void setFechaMinima(Date fechaMinima) {
+        this.fechaMinima = fechaMinima;
+    }
+
+    public Date getFechaMaxima() {
+        return fechaMaxima;
+    }
+
+    public void setFechaMaxima(Date fechaMaxima) {
+        this.fechaMaxima = fechaMaxima;
     }
 
     public Usuario getUsuario() {
@@ -76,13 +111,20 @@ public class cUsuarios implements Serializable {
 
     public void validarG(FacesContext context, UIComponent toValidate, Object value) {
        String dato = (String)value;
+       String regex = "^[a-zA-Z]+$";
+       Pattern patron = Pattern.compile(regex);
+       Matcher matcher = patron.matcher(dato);
+       
        FacesMessage mensaje;
-       if(dato.length() == 0){
-           mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO,"Dato", "Este campo se encuentra vacio");
+      
+       if(!matcher.find()){
+           mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO,"Algunos campos contienen números", "El campo solo requiere de texto sin números o caracteres especiales");
            context.addMessage(toValidate.getClientId(context), mensaje);
            ((UIInput)toValidate).setValid(false);
+           return;
        }
     }
+    
 
     /*
     public int buscarU(Usuario u){

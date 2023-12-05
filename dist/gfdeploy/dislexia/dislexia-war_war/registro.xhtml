@@ -24,9 +24,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 margin: 0;
                 padding:0;
             }
-           
+
             #contenedor {
-                display: flex;          
+                display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: 0;
@@ -73,9 +73,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 background-color: #003399;
                 color: white;
                 cursor: pointer;
-                border: none; 
-                padding: 10px; 
-                margin-top: 20px; 
+                border: none;
+                padding: 10px;
+                margin-top: 20px;
                 border-radius: 5px;
             }
 
@@ -84,54 +84,88 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
     </h:head>
     <h:body>
-            
-                <div class ="card">
+
+        <div class ="card">
+            <h:form>
+                <p:messages id="messages" showDetail="false" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
+
+            </h:form>
+        </div>
+        <div id ="contenedor">
+            <div id="imagen">
+                <img src="#{request.contextPath}/imagenes/logo.jpg" alt="logo"  style="max-width: 100%;"/>
+            </div><!-- imagen -->
+            <div id="formulario">
+                <h2>DATOS DEL ESTUDIANTE</h2>
                 <h:form>
-                    <p:messages id="messages" showDetail="false" closable="true">
-                        <p:autoUpdate/>
-                    </p:messages>
+                    <p:outputLabel for="usuario">Usuario</p:outputLabel>
+                    <p:inputText id="usuario" value ="#{cUsuarios.usuario.usuario}" 
+                                 required = "true" 
+                                 requiredMessage="Ingrese un usuario" 
+                                 validator = "#{cUsuarios.validarG}"
+                                 title="usuarioU"/>
 
+                    <p:outputLabel for="nombre">Nombre:</p:outputLabel>
+                    <p:inputText id="nombre" 
+                                 value ="#{cUsuarios.usuario.nombre}" 
+                                 required = "true" 
+                                 requiredMessage="Ingrese su nombre completo" 
+                                 validator ="#{cUsuarios.validarG}"
+                                 title="nombre"/>
+
+                    <p:outputLabel for="apellidop">Apellido Paterno:</p:outputLabel>
+                    <p:inputText id="apellidop" 
+                                 value ="#{cUsuarios.usuario.apellidop}" 
+                                 required = "true" 
+                                 requiredMessage="Ingrese su apellido paterno" 
+                                 validator ="#{cUsuarios.validarG}"
+                                 title="apellidoP"/>
+
+                    <p:outputLabel for ="apellidom" >Apellido Materno:</p:outputLabel>
+                    <p:inputText id ="apellidom" value ="#{cUsuarios.usuario.apellidom}"
+                                 required = "true" 
+                                 requiredMessage="Ingrese su apellido materno" 
+                                 validator ="#{cUsuarios.validarG}"
+                                 title ="apellidoM"/>
+
+                    <p:outputLabel for="fechaNacimiento">Fecha de Nacimiento:</p:outputLabel>
+                    <p:calendar id="fechaNacimiento" value = "#{cUsuarios.usuario.fechanac}" 
+                                required = "true" 
+                                requiredMessage ="Se requiere de una fecha de nacimiento" 
+                                title="fechaNacimiento"
+                                mindate="#{cUsuarios.fechaMinima}"
+                                maxdate ="#{cUsuarios.fechaMaxima}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+
+                    </p:calendar>
+
+                    <p:outputLabel for="grupo">Grupo:</p:outputLabel>
+                    <p:inputText id="grupo" 
+                                 value = "#{cUsuarios.usuario.grupo}" 
+                                 required = "true" 
+                                 requiredMessage="Ingrese su grupo" 
+                                 title="grupo"/>
+
+                    <p:outputLabel for="contrasenia">Contraseña</p:outputLabel>
+                    <p:inputMask id="contrasenia" 
+                                 value = "#{cUsuarios.usuario.contrasenia}" 
+                                 required = "true" requiredMessage="Ingrese su contraseña" 
+                                 title="Pass"/>
+
+                    <p:outputLabel for="problemas">Problemas:</p:outputLabel>
+                    <p:inputText id="problemas" value ="#{cUsuarios.usuario.descripcion}" 
+                                 required = "true" 
+                                 requiredMessage="Describa su problemática" 
+                                 title ="discapacidades"/>
+
+                    <h:commandButton value="Siguiente" action="#{cUsuarios.registrar()}" />
                 </h:form>
-            </div>
-            <div id ="contenedor">
-                <div id="imagen">
-                    <img src="#{request.contextPath}/imagenes/logo.jpg" alt="logo"  style="max-width: 100%;"/>
-                </div><!-- imagen -->
-                <div id="formulario">
-                    <h2>DATOS DEL ESTUDIANTE</h2>
-                    <h:form>
-                        <p:outputLabel for="usuario">Usuario</p:outputLabel>
-                        <p:inputText id="usuario" value ="#{cUsuarios.usuario.usuario}" required = "true" requiredMessage="Ingrese un usuario" title="usuarioU"/>
-
-                        <p:outputLabel for="nombre">Nombre:</p:outputLabel>
-                        <p:inputText id="nombre" value ="#{cUsuarios.usuario.nombre}" required = "true" requiredMessage="Ingrese su nombre completo" title="nombre"/>
-
-                        <p:outputLabel for="apellidop">Apellido Paterno:</p:outputLabel>
-                        <p:inputText id="apellidop" value ="#{cUsuarios.usuario.apellidop}" required = "true" requiredMessage="Ingrese su apellido paterno" title="apellidoP"/>
-
-                        <p:outputLabel for ="apellidom" >Apellido Materno:</p:outputLabel>
-                        <p:inputText id ="apellidom" value ="#{cUsuarios.usuario.apellidom}" required = "true" requiredMessage="Ingrese su apellido materno" title ="apellidoM"/>
-
-                        <p:outputLabel for="fechaNacimiento">Fecha de Nacimiento:</p:outputLabel>
-                        <p:calendar id="fechaNacimiento" value = "#{cUsuarios.usuario.fechanac}" required = "true" requiredMessage ="Se requiere de una fecha de nacimiento" title="fechaNacimiento">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </p:calendar>
-
-                        <p:outputLabel for="grupo">Grupo:</p:outputLabel>
-                        <p:inputText id="grupo" value = "#{cUsuarios.usuario.grupo}" required = "true" requiredMessage="Ingrese su grupo" title="grupo"/>
-
-                        <p:outputLabel for="contrasenia">Contraseña</p:outputLabel>
-                        <p:inputMask id="contrasenia" value = "#{cUsuarios.usuario.contrasenia}" required = "true" requiredMessage="Ingrese su contraseña" title="Pass"/>
-
-                        <p:outputLabel for="problemas">Problemas:</p:outputLabel>
-                        <p:inputText id="problemas" value ="#{cUsuarios.usuario.descripcion}" required = "true" requiredMessage="Describa su problemática" title ="discapacidades"/>
-
-                        <h:commandButton value="Siguiente" action="#{cUsuarios.registrar()}" />
-                    </h:form>
-
-                </div>
 
             </div>
+
+        </div>
     </h:body>
 
 </html>

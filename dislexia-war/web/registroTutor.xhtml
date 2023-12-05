@@ -26,7 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             }
 
             #contenedor {
-                display: flex;          
+                display: flex;
                 align-items: center;
                 justify-content: center;
                 padding: 0;
@@ -70,39 +70,52 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <title>ALUMNOS</title>
     </h:head>
     <h:body>
-                <div class ="card">
-                <h:form>
-                    <p:messages id="messages" showDetail="false" closable="true">
-                        <p:autoUpdate/>
-                    </p:messages>
-
-                </h:form>
-            </div>
+        <div class ="card">
+            <h:form>
+                <p:messages id="messages" showDetail="false" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
+            </h:form>
+        </div>
         <div id="contenedor">
             <div id="imagen">
                 <img src="#{request.contextPath}/imagenes/logo.jpg" alt="logo"  style="max-width: 100%;"/>
             </div><!-- imagen -->
             <div id="formulario">
-                <h2>DATOS DEL TUTOR DE ${cUsuarios.usuario.usuario}</h2>
+                <h2>DATOS DEL TUTOR ${cTutor.tutor.nombre}</h2>
                 <h:form>
 
-                    <h:outputLabel for="nombre">Nombre</h:outputLabel >
-                    <h:inputText id="nombreIpt" value ="#{cTutor.tutor.nombre}" required ="true" requiredMessage = "Nombre no requisitado" title="nombre tutor"/>
+                    <p:outputLabel for="nombre">Nombre</p:outputLabel>
+                    <p:inputText id="nombre" value ="#{cTutor.tutor.nombre}" 
+                                 required ="true" 
+                                 requiredMessage = "Nombre no requisitado" 
+                                 validator ="#{cUsuarios.validarG}"
+                                 title="nombre tutor"/>
 
-                    <h:outputLabel for ="apellidopt">Apellido Paterno</h:outputLabel>
-                    <h:inputText id ="apellidoIpt" value ="#{cTutor.tutor.apellidop}" required ="true" requiredMessage = "Apellido paterno no requisitado" title ="apellido paterno tutor"/>
+                    <p:outputLabel for ="apellidopt">Apellido Paterno</p:outputLabel>
+                    <p:inputText id ="apellidopt" 
+                                 value ="#{cTutor.tutor.apellidop}" 
+                                 required ="true" 
+                                 requiredMessage = "Apellido paterno no requisitado" 
+                                 validator ="#{cUsuarios.validarG}"
+                                 title ="apellido paterno tutor"/>
 
-                    <h:outputLabel for ="apellidomt" >Apellido Materno</h:outputLabel>
-                    <h:inputText id ="apellidoImt" value ="#{cTutor.tutor.apellidom}" required ="true" requiredMessage = "Apellido materno no requisitado" title ="apellido materno tutor"/>
+                    <p:outputLabel for ="apellidomt" >Apellido Materno</p:outputLabel>
+                    <p:inputText id ="apellidomt" 
+                                 value ="#{cTutor.tutor.apellidom}" 
+                                 required ="true" 
+                                 requiredMessage = "Apellido materno no requisitado" 
+                                 validator ="#{cUsuarios.validarG}"
+                                 title ="apellido materno tutor"/>
 
-                    <h:outputLabel  for="correo">Correo</h:outputLabel >
-                    <h:inputText  id="nombre" value ="#{cTutor.tutor.correo}" required ="true" requiredMessage = "Correo no requisitado" title="correo tutor"/>
+                    <p:outputLabel for="correo">Correo</p:outputLabel>
+                    <p:inputText  id="correo" value ="#{cTutor.tutor.correo}" 
+                                  validator ="#{cTutor.validaC}"
+                                  title="correo tutor"/>
 
                     <h:commandButton value="SIGUIENTE" action ="#{cTutor.registrarTutor}" actionListener ="#{cTutor.tutor.setIdtutorado(cUsuarios.usuario)}"/>
                 </h:form>
             </div>
-
-
         </div>
 
     </h:body>
