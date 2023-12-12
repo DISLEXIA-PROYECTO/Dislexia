@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Crucigrama</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            table, th, td {
+                border: 1px solid black;
+            }
+
+            th, td {
+                padding: 15px;
+                text-align: center;
+                width: 30px; /* Ajusta el ancho de las celdas según sea necesario */
+                height: 30px; /* Ajusta la altura de las celdas según sea necesario */
+            }
+
+            .clave-across, .clave-down {
+                font-weight: bold;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="1">
+                <table>
+                    <tbody>
+                        <ui:repeat value="#{crucigramaBean.tablero}" var="fila">
+                            <tr>
+                                <ui:repeat value="#{fila}" var="celda">
+                                    <td>
+                                        <h:panelGroup rendered="#{celda.tipo == 'negra'}">
+                                            <!-- Celda negra -->
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{celda.tipo == 'blanca'}">
+                                            <!-- Celda blanca -->
+                                            <h:outputText value="#{celda.letra}" style="font-size: 20px;"/>
+                                        </h:panelGroup>
+                                    </td>
+                                </ui:repeat>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+                <br/>
+                <h:panelGrid columns="2">
+                    <h:panelGroup>
+                        <h:outputText value="Claves Across:" styleClass="clave-across"/>
+                        <br/>
+                        <ui:repeat value="#{crucigramaBean.clavesAcross}" var="clave">
+                            <h:outputText value="#{clave}" /><br/>
+                        </ui:repeat>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <h:outputText value="Claves Down:" styleClass="clave-down"/>
+                        <br/>
+                        <ui:repeat value="#{crucigramaBean.clavesDown}" var="clave">
+                            <h:outputText value="#{clave}" /><br/>
+                        </ui:repeat>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

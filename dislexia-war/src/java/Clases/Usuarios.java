@@ -21,12 +21,12 @@ public class Usuarios implements Serializable {
      */
     public Usuarios() {
     }
-    
+
     private int id;
     private String usuario;
     private String correoElectronico;
     private String contrasena;
-    
+
     public int getId() {
         return id;
     }
@@ -34,13 +34,13 @@ public class Usuarios implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getUsuario(){
-    return usuario;
-   }
-    
-    public void setUsuario(String Usuario){
-    this.usuario = Usuario;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String Usuario) {
+        this.usuario = Usuario;
     }
 
     public String getCorreoElectronico() {
@@ -58,9 +58,5 @@ public class Usuarios implements Serializable {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-    
-    }
 
-
-    
-
+}
