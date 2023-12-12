@@ -6,8 +6,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+<<<<<<< HEAD
       xmlns:f="http://xmlns.jcp.org/jsf/core">
       
+=======
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
     <h:head>
         <title>DislexApp-Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,12 +26,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 padding: 0;
                 font-family: sans-serif;
                 color: #FFFFFF;
+<<<<<<< HEAD
                 
                 
             }
             
             body::before{
                
+=======
+
+
+            }
+
+            body::before{
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
                 content: "";
                 background: url(https://static.nationalgeographicla.com/files/styles/image_3200/public/virtual-learning-og.jpg?w=1600);
                 background-size: cover;
@@ -34,12 +52,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 width: 100%;
                 height: 100%;
                 z-index: -1;
+<<<<<<< HEAD
                 }
             
+=======
+            }
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
             .login-box {
                 position: absolute;
                 top: 50%;
                 left: 50%;
+<<<<<<< HEAD
                 transform:translate(-50%, -50%); 
                 width: 320px;
                 height: 410px;
@@ -52,30 +76,57 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             .login-box .avatar{
                 width: 100px;
                 height: 100px; 
+=======
+                transform:translate(-50%, -50%);
+                width: 320px;
+                height: 410px;
+                background: #003399;
+                padding: 60px 30px;
+                box-sizing: border-box;
+
+            }
+
+            .login-box .avatar{
+                width: 100px;
+                height: 100px;
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
                 border-radius: 50px;
                 position: absolute;
                 top: -50px;
                 left: calc(50% - 50px);
             }
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
             .login-box h1{
                 margin: 0;
                 padding: 0 0 20px;
                 text-align: center;
                 font-size: 22px;
             }
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
             .login-box label{
                 margin: 0;
                 padding: 0;
                 font-weight: bold;
                 display: block;
             }
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
             .login-box input{
                 width: 100%;
                 margin-bottom: 20px;
             }
+<<<<<<< HEAD
             
             .login-box input[type="text"],
             .login-box input[type="password"]{
@@ -88,6 +139,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 font-size: 16px;
             }
             
+=======
+
+            .login-box input[type="text"],
+            .login-box input[type="password"]{
+                border: none;
+                border-bottom: 1px solid #FFFFFF;
+                background-color: transparent;
+                outline: none;
+                height: 40px;
+                color:#FFFFFF;
+                font-size: 16px;
+            }
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
             .login-box input[type = "submit"]{
                 border: none;
                 outline: none;
@@ -97,20 +162,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 font-size: 15px;
                 font-weight: bold;
                 border-radius: 10px;
+<<<<<<< HEAD
                 
             }
             
+=======
+
+            }
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
             .login-box a{
                 font-size: 12px;
                 line-height: 20px;
                 color: darkgray;
             }
+<<<<<<< HEAD
             
             .login-box a.hover{
                 color:#FFFFFF;
             }
             
             
+=======
+
+            .login-box a.hover{
+                color:#FFFFFF;
+            }
+
+
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
         </style>
     </h:head>
     <h:body>
@@ -118,6 +198,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             <img src="#{request.contextPath}/imagenes/logo.jpg" class = "avatar" alt="logo-login"/>
             <h1>Iniciar Sesión</h1>
             <h:form>
+<<<<<<< HEAD
             
                 <h:outputLabel for ="usuario" >Usuario</h:outputLabel>
                 <h:inputText value="#{Usuarios.usuario}" required ="true"></h:inputText>
@@ -132,6 +213,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <a href ="#">Registrarse</a>
         </h:form>
             
+=======
+
+                <h:outputLabel for ="usuario">Usuario</h:outputLabel>
+                <h:inputText id="usuario" 
+                             validator ="#{cUsuarios.validarU}"
+                             value="#{cUsuarios.usuario.usuario}"></h:inputText>
+
+                <h:outputLabel for ="contrasenia" >Contraseña</h:outputLabel>
+                <h:inputSecret id="contrasenia" 
+                               validator ="#{cUsuarios.validarP}"
+                               value="#{cUsuarios.usuario.contrasenia}"
+                               required="true"></h:inputSecret>
+
+                <h:commandButton value="Ingresar" action="#{cUsuarios.log()}"/> 
+            </h:form>
+            <h:form>
+                <h:commandLink value="Recuperar Contraseña"/> 
+                <br></br>
+                <h:commandLink value="Registrarse" action ="registro"/> 
+            </h:form>
+        </div>
+        <div class ="card">
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true" globalOnly="true">
+                    <p:autoUpdate/>
+                </p:messages>
+            </h:form>
+>>>>>>> a29cfe3c5147763e69c1f81e358c776380b16663
         </div>
     </h:body>
 </html>
